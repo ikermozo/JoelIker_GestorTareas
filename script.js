@@ -54,20 +54,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const elCategoria = document.getElementById("categoria-frase");
   const elTextoFrase = document.getElementById("texto-frase");
 
-  // 3. Registramos el evento de clic de forma moderna (obligatorio en la rúbrica)
   if (btnFrase) {
     btnFrase.addEventListener("click", () => {
-      // Math.random() saca un número entre 0 y 0.99. 
-      // Lo multiplicamos por la longitud del array (5) y Math.floor() le quita los decimales.
-      // Así siempre nos dará un índice válido: 0, 1, 2, 3 o 4.
       const indiceAleatorio = Math.floor(Math.random() * frases.length);
       
-      // Extraemos los datos
       const fraseSeleccionada = frases[indiceAleatorio];
       const categoria = fraseSeleccionada[0];
       const texto = fraseSeleccionada[1];
 
-      // Inyectamos en el HTML
       if (elCategoria && elTextoFrase) {
         elCategoria.textContent = categoria;
         elTextoFrase.textContent = texto;

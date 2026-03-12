@@ -1,17 +1,204 @@
 /*5.1*/
 
-body {
-  transition: background-color 0.3s ease, color 0.3s ease;
+/* =========================================================
+   1. VARIABLES CSS (El motor del Modo Claro/Oscuro)
+   ========================================================= */
+:root {
+  --bg-color-1: #e0c3fc;
+  --bg-color-2: #8ec5fc;
+  --card-bg: rgba(255, 255, 255, 0.6);
+  --card-border: rgba(255, 255, 255, 0.3);
+  --text-main: #2d3436;
+  --text-muted: #636e72;
+  --primary-btn: #6c5ce7;
+  --primary-btn-hover: #5b4bc4;
+  --danger-btn: #d63031;
+  --shadow: rgba(31, 38, 135, 0.15);
 }
 
 body.dark-mode {
-  background-color: #1a1a1a;
-  color: #f0f0f0;
+  --bg-color-1: #1e272e;
+  --bg-color-2: #2f3640;
+  --card-bg: rgba(30, 39, 46, 0.6);
+  --card-border: rgba(255, 255, 255, 0.05);
+  --text-main: #f5f6fa;
+  --text-muted: #dcdde1;
+  --primary-btn: #00a8ff;
+  --primary-btn-hover: #0097e6;
+  --shadow: rgba(0, 0, 0, 0.4);
 }
 
-body.dark-mode input,
-body.dark-mode button {
-  background-color: #333;
-  color: #fff;
-  border-color: #555;
+/* =========================================================
+   2. RESET Y FONDO ANIMADO
+   ========================================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
+}
+
+body {
+  background: linear-gradient(-45deg, var(--bg-color-1), var(--bg-color-2));
+  background-size: 400% 400%;
+  animation: gradientBackground 12s ease infinite;
+  color: var(--text-main);
+  min-height: 100vh;
+  padding: 2rem;
+  transition: color 0.4s ease;
+}
+
+@keyframes gradientBackground {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* =========================================================
+   3. LAYOUT PRINCIPAL
+   ========================================================= */
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+#saludo {
+  font-size: 2.5rem;
+  text-shadow: 2px 2px 4px var(--shadow);
+}
+
+#reloj {
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* =========================================================
+   4. TARJETAS EFECTO CRISTAL
+   ========================================================= */
+section {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px); 
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px 0 var(--shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px 0 var(--shadow);
+}
+
+section h2 {
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--primary-btn);
+  padding-bottom: 0.5rem;
+  display: inline-block;
+}
+
+/* =========================================================
+   5. CONTROLES Y BOTONES AVANZADOS
+   ========================================================= */
+input[type="text"] {
+  width: 65%;
+  padding: 12px 15px;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--text-main);
+  outline: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+body.dark-mode input[type="text"] {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+input[type="text"]:focus {
+  box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.3);
+}
+
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--primary-btn);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background-color: var(--primary-btn-hover);
+  transform: scale(1.05);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+/* =========================================================
+   6. LISTA DE TAREAS Y ANIMACIÓN DE ENTRADA
+   ========================================================= */
+ul {
+  list-style: none;
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 12px 15px;
+  border-radius: 8px;
+  border-left: 4px solid var(--primary-btn);
+  
+  animation: slideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+body.dark-mode li {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+li button {
+  background-color: var(--danger-btn);
+  padding: 8px 12px;
+  font-size: 0.85rem;
+}
+
+li button:hover {
+  background-color: #ff5252;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
