@@ -6,21 +6,32 @@
     <title>Gestor de Identidad</title>
   </head>
   <body>
-<header>
-  <h1 id="saludo"></h1>
-  <div id="reloj"></div>
-</header>
+    <header>
+      <h1 id="saludo"></h1>
+      <div id="reloj"></div>
+    </header>
 
-<main>
-  <section class="seccion-motivacion">
-    <h2>Mensaje del dia</h2>
-    <button id="btn-frase">Generar frase</button>
-    <p>
-      <strong id="categoria-frase">Categoria</strong>: 
-      <span id="texto-frase">Pulsa el boton para ver un mensaje.</span>
-    </p>
-  </section>
-</main>
+    <main>
+      <section class="seccion-motivacion">
+        <h2>Mensaje del dia</h2>
+        <button id="btn-frase">Generar frase</button>
+        <p>
+          <strong id="categoria-frase">Categoria</strong>:
+          <span id="texto-frase">Pulsa el boton para ver un mensaje.</span>
+        </p>
+      </section>
+
+      <section class="seccion-tareas">
+        <h2>Mis Tareas</h2>
+        <input
+          type="text"
+          id="input-tarea"
+          placeholder="Escribe una tarea..."
+        />
+        <button id="btn-anadir">Añadir Tarea</button>
+        <ul id="lista-tareas"></ul>
+      </section>
+    </main>
 
     <script src="script.js"></script>
   </body>
