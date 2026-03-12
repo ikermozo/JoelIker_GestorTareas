@@ -75,16 +75,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  //3.1 -----------------
-  const inputTarea = document.getElementById("input-tarea");
-  const btnAnadir = document.getElementById("btn-anadir");
-  const listaTareas = document.getElementById("lista-tareas");
+    // 3.1------------------
+    const inputTarea = document.getElementById("input-tarea");
+    const btnAnadir = document.getElementById("btn-anadir");
+    const listaTareas = document.getElementById("lista-tareas");
 
-  if (btnAnadir) {
-    btnAnadir.addEventListener("click", () => {
-      const texto = inputTarea.value.trim();
-
-      if (texto !== "") {
+    function crearNuevaTarea(texto) {
         const nuevoLi = document.createElement("li");
         nuevoLi.textContent = texto + " ";
 
@@ -96,20 +92,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
         inputTarea.value = "";
 
-        //3.2 -----------------------
+        // 3.2 -----------
         nuevoLi.addEventListener("click", () => {
-          console.log(texto);
+        console.log(texto);
         });
 
         btnEliminar.addEventListener("click", (e) => {
-          e.stopPropagation();
-          nuevoLi.remove();
+        e.stopPropagation();
+        nuevoLi.remove();
         });
-      }
-    });
-  }
-  
+    }
 
+    if (btnAnadir) {
+        btnAnadir.addEventListener("click", () => {
+        const texto = inputTarea.value.trim();
+        if (texto !== "") {
+            crearNuevaTarea(texto);
+        }
+        });
+    }
+    
+    //4---------------------------------
+    if (inputTarea) {
+        inputTarea.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            e.preventDefault(); 
+            
+            const textoTarea = inputTarea.value.trim();
+            if (textoTarea !== "") {
+            crearNuevaTarea(textoTarea);
+            }
+        }
+        });
+    }
+    
   //5.1
 
     const btnModoOscuro = document.getElementById("btn-modo-oscuro");
