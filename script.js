@@ -148,4 +148,17 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+//5.2-----------------------
+    const spanWidth = document.getElementById("window-width");
+    const spanHeight = document.getElementById("window-height");
+
+    function actualizarDimensiones() {
+        if (spanWidth && spanHeight) {
+        spanWidth.textContent = window.innerWidth;
+        spanHeight.textContent = window.innerHeight;
+        }
+    }
+    actualizarDimensiones();
+
+    window.addEventListener("resize", actualizarDimensiones);
 });
